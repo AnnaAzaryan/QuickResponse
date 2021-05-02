@@ -1,0 +1,35 @@
+﻿@model MessageViewModel
+
+<div class="container">
+    <div class="row" style="width: 100%">
+        <div @*class="col-lg-8 col-md-10 mx-auto"*@ class="w-100">
+            @if (Model.MessageId == 0)
+            {
+                <p>Ուղարկել հաղորդագրություն</p>
+            }
+            else if (Model.MessageId == -1)
+            {
+                <p>Բողոքել (Հաղորդագրությունը ուղարկվում է համակարգի սպասարկման բաժին) </p>
+            }
+            else
+            {
+                <p>Պատասխանել նամակին</p>
+            }
+            <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+            <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+            <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+            <form name="sentMessage" id="contactForm" novalidate asp-action="Create" asp-controller="Message" method="post">
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <textarea rows="5" class="form-control" placeholder="Հաղորդագրություն" id="message" asp-for="Body" required data-validation-required-message="Please enter a message."></textarea>
+                        <div><span asp-validation-for="Body" class="text-danger"></span></div>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <br>
+                <div id="success"></div>
+                <button type="submit" class="btn btn-primary" id="sendMessageButton">ՈՒղարկել</button>
+            </form>
+        </div>
+    </div>
+</div>
